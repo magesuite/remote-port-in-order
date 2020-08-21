@@ -20,7 +20,7 @@ class AddRemotePortToIpTest extends \PHPUnit\Framework\TestCase
      */
     protected $requestDouble;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->objectManager = \Magento\TestFramework\ObjectManager::getInstance();
 
