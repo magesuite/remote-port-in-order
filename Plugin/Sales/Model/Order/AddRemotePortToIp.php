@@ -18,7 +18,8 @@ class AddRemotePortToIp
     public function aroundSetRemoteIp(\Magento\Sales\Model\Order $subject, callable $proceed, $remoteIp)
     {
         $remotePort = $this->request->getServer('REMOTE_PORT');
-        if (!preg_match('/(\d[\d.]+):(\d+)\b/', $remoteIp) && !empty($remotePort)) {
+
+        if ($remotePort !== null && !preg_match('/(\d[\d.]+):(\d+)\b/', $remoteIp) && !empty($remotePort)) {
             $remoteIp = sprintf('%s:%s', $remoteIp, $remotePort);
         }
 
