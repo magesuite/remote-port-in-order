@@ -40,7 +40,8 @@ class AddRemotePortToIpTest extends \PHPUnit\Framework\TestCase
             ->willReturn('66666');
 
         $order = $this->objectManager->create(\Magento\Sales\Model\Order::class);
-        $proceed = function ($remoteIp) use ($order) { //phpcs:ignore
+        // phpcs:ignore Standard.Classes.RequireFullPath
+        $proceed = function ($remoteIp) use ($order) {
             return $order->setRemoteIp($remoteIp);
         };
 
@@ -63,7 +64,8 @@ class AddRemotePortToIpTest extends \PHPUnit\Framework\TestCase
             ->willReturn(null);
 
         $order = $this->objectManager->create(\Magento\Sales\Model\Order::class);
-        $proceed = function ($remoteIp) use ($order) { //phpcs:ignore
+        // phpcs:ignore Standard.Classes.RequireFullPath
+        $proceed = function ($remoteIp) use ($order) {
             return $order->setRemoteIp($remoteIp);
         };
 
