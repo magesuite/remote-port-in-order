@@ -4,21 +4,14 @@ namespace MageSuite\RemotePortInOrder\Test\Unit\Plugin\Sales\Model\Order;
 
 class AddRemotePortToIpTest extends \PHPUnit\Framework\TestCase
 {
+    protected ?\Magento\TestFramework\ObjectManager $objectManager;
+
+    protected ?\MageSuite\RemotePortInOrder\Plugin\Sales\Model\Order\AddRemotePortToIp $plugin;
 
     /**
-     * @var \Magento\TestFramework\ObjectManager
+     * @var \Magento\Framework\App\Request\Http
      */
-    protected $objectManager;
-
-    /**
-     * @var \MageSuite\RemotePortInOrder\Plugin\Sales\Model\Order\AddRemotePortToIp
-     */
-    protected $plugin;
-
-    /**
-     * @var \Magento\Framework\App\Request\Http|\PHPUnit_Framework_MockObject_MockObject
-     */
-    protected $requestDouble;
+    protected ?\PHPUnit\Framework\MockObject\MockObject $requestDouble;
 
     public function setUp(): void
     {
@@ -47,6 +40,7 @@ class AddRemotePortToIpTest extends \PHPUnit\Framework\TestCase
             ->willReturn('66666');
 
         $order = $this->objectManager->create(\Magento\Sales\Model\Order::class);
+        // phpcs:ignore Standard.Classes.RequireFullPath
         $proceed = function ($remoteIp) use ($order) {
             return $order->setRemoteIp($remoteIp);
         };
@@ -67,9 +61,10 @@ class AddRemotePortToIpTest extends \PHPUnit\Framework\TestCase
         $this->requestDouble
             ->expects($this->once())
             ->method('getServer')
-            ->willReturn(NULL);
+            ->willReturn(null);
 
         $order = $this->objectManager->create(\Magento\Sales\Model\Order::class);
+        // phpcs:ignore Standard.Classes.RequireFullPath
         $proceed = function ($remoteIp) use ($order) {
             return $order->setRemoteIp($remoteIp);
         };
